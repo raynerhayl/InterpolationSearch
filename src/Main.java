@@ -5,6 +5,7 @@
 import ecs100.*;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ public class Main {
         UI.initialise();
         UI.addButton("Merge Sort", this::mergeSort);
         UI.addButton("Graph frequencies", ()->{graphFrequencies(array);});
+        UI.addButton("Interpolate Strings", this::sortedArraySet);
 
     }
 
@@ -84,6 +86,22 @@ public class Main {
             return low;
         } else {
             return -1;
+        }
+    }
+
+    public void sortedArraySet(){
+        String toAdd = UI.askString("Add to set or type 'done' to stop");
+        SortedArraySet set = new SortedArraySet();
+        while(toAdd.equals("done")==false){
+            boolean added = set.add(toAdd);
+            UI.println("Attempting to add: "+toAdd);
+            if(added){
+                UI.println("Successfully added");
+            } else {
+                UI.println("Not added");
+            }
+            set.print();
+            toAdd = UI.askString("Add to set or type 'done' to stop");
         }
     }
 
